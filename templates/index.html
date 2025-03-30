@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .add-btn {
+            background-color: green;
+            color: white;
+        }
+        .remove-btn {
+            background-color: orange;
+            color: white;
+        }
+        .reset-btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Inventory Management System</h1>
+
+    <!-- Form to add or remove items -->
+    <form method="POST">
+        <input type="text" name="item_name" placeholder="Item Name" required>
+        <input type="number" name="quantity" placeholder="Quantity" required>
+        <button type="submit" name="action" value="Add" class="add-btn">Add</button>
+        <button type="submit" name="action" value="Remove" class="remove-btn">Remove</button>
+    </form>
+
+    <!-- Reset inventory button -->
+    <form method="POST">
+        <button type="submit" name="reset" value="true" class="reset-btn">Reset Inventory</button>
+    </form>
+
+    <h2>Current Inventory</h2>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+        </tr>
+        {% for item, quantity in inventory.items() %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
